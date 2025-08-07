@@ -15,6 +15,7 @@ body {
   line-height: 1.9;
   margin: 0;
   font-family: system-ui, sans-serif;
+  position: relative;
 }
 
 /* default boilerplate settings */
@@ -22,20 +23,49 @@ body {
 .wrapper {
   max-width: 60rem;
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding: 5rem 1rem;
 }
 .site-title {
+  position: relative;
   font-size: 3rem;
   text-align: center;
   padding-block: 3rem;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+.diagonal-section {
+  position: relative;
+  isolation: isolate;
+  --skew-angle: -4deg;
+  --background-dg-clr: linear-gradient(
+    45deg,
+    hsl(0, 99%, 51%),
+    hsl(49, 99%, 51%),
+    hsl(101, 94%, 51%)
+  );
+}
+.diagonal-section::before {
+  content: "";
+  position: absolute;
+  display: block;
+  block-size: 100%;
+  inset: 0;
+  background: var(--background-dg-clr);
+  z-index: -1;
+  transform: skewY(var(--skew-angle));
 }
 .site-footer {
   text-align: center;
   padding: 2rem 0;
   background-color: rgba(255, 255, 255, 0.1);
 }
-
+img {
+  display: block;
+  margin-inline: auto;
+  mask-image: url("alien-svgrepo-com.svg");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}
 .section {
   margin-block: 5rem;
 }
