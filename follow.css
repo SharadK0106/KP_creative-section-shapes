@@ -15,7 +15,6 @@ body {
   line-height: 1.9;
   margin: 0;
   font-family: system-ui, sans-serif;
-  position: relative;
 }
 
 /* default boilerplate settings */
@@ -27,11 +26,68 @@ body {
 }
 .site-title {
   position: relative;
-  font-size: 3rem;
+  font-size: 5rem;
+  font-weight: 900;
   text-align: center;
   padding-block: 3rem;
-  /* background-color: rgba(255, 255, 255, 0.1); */
-  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  /* background-color: rgba(255, 255, 255, 0.1); 
+  mask-image: linear-gradient(to bottom, black, transparent 70%);*/
+  mask-image: url("triangle_shape.svg");
+  mask-size: 100% 5%;
+}
+.site-footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+img {
+  display: block;
+  margin-inline: auto;
+  mask-image: url("alien-svgrepo-com.svg");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}
+.section {
+  margin-block: 5rem;
+}
+.section-title {
+  margin-block: 2rem;
+}
+
+header {
+  isolation: isolate;
+}
+.tool-tip {
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  /* display: inline-block; */
+  inline-size: max-content;
+  margin-inline: auto;
+}
+.tool-tip:hover::after {
+  content: "my tooltip";
+  background-color: rgba(137, 43, 226, 0.619);
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 50%;
+  z-index: 1;
+}
+.tool-tip:hover::before {
+  content: "my tooltip";
+  background-color: rgba(226, 177, 43, 0.623);
+  position: absolute;
+  display: block;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 .diagonal-section {
   position: relative;
@@ -54,23 +110,99 @@ body {
   z-index: -1;
   transform: skewY(var(--skew-angle));
 }
-.site-footer {
-  text-align: center;
-  padding: 2rem 0;
-  background-color: rgba(255, 255, 255, 0.1);
+
+.spikes-section {
+  position: relative;
+  isolation: isolate;
+  --spike-bg: repeating-linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.04) 0px,
+      rgba(0, 0, 0, 0.04) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    linear-gradient(135deg, rgb(165, 230, 235), rgb(29, 32, 232));
+  background: var(--spike-bg);
 }
-img {
+.spikes-section::before {
+  content: "";
+  position: absolute;
   display: block;
-  margin-inline: auto;
-  mask-image: url("alien-svgrepo-com.svg");
-  mask-size: cover;
+  height: 3rem;
+  width: 100%;
+  background: var(--body-bg);
+  z-index: -1;
+  top: 0;
+  mask-image: url("triangle_shape.svg");
+  mask-size: 100% 100%;
   mask-repeat: no-repeat;
 }
-.section {
-  margin-block: 5rem;
+.spikes-section::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 3rem;
+  width: 100%;
+  background: var(--body-bg);
+  z-index: -1;
+  bottom: 0;
+  mask-image: url("triangle_shape.svg");
+  transform: rotate(0.5turn);
+  mask-size: 100% 100%;
 }
-.section-title {
-  margin-block: 2rem;
+
+.spikes-section2 {
+  position: relative;
+  isolation: isolate;
+  --spike-bg: linear-gradient(
+    90deg,
+    rgb(243, 114, 209) 0%,
+    rgb(44, 19, 241) 100%
+  );
+  background: var(--spike-bg);
+}
+.spikes-section2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 1rem;
+  width: 100%;
+  background: var(--body-bg);
+  z-index: -1;
+  top: 0;
+  mask-image: url("triangle_shape.svg");
+  mask-size: 4rem 1rem;
+}
+.spikes-section2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 1rem;
+  width: 100%;
+  background: var(--body-bg);
+  z-index: -1;
+  bottom: 0;
+  mask-image: url("triangle_shape.svg");
+  transform: rotate(0.5turn);
+  mask-size: 4rem 1rem;
+}
+
+.waves-section {
+  position: relative;
+  isolation: isolate;
+  --wave-bg: linear-gradient(0deg, rgb(113, 136, 223), rgb(17, 213, 207));
+  background: var(--wave-bg);
+
+  --mask: radial-gradient(51.43px at 50% 69px, #000 99%, #0000 101%)
+      calc(50% - 46px) 0/92px 51% repeat-x,
+    radial-gradient(51.43px at 50% -46px, #0000 99%, #000 101%) 50% 23px/92px
+      calc(51% - 23px) repeat-x,
+    radial-gradient(51.43px at 50% calc(100% - 69px), #000 99%, #0000 101%)
+      calc(50% - 46px) 100%/92px 51% repeat-x,
+    radial-gradient(51.43px at 50% calc(100% + 46px), #0000 99%, #000 101%) 50%
+      calc(100% - 23px) / 92px calc(51% - 23px) repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
 }
 
 /* layout section */
